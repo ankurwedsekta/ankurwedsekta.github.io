@@ -1,0 +1,186 @@
+@import "tailwindcss";
+
+/*
+  The Painted Palace — design tokens
+  Sindoor lacquer, peacock night, rani silk, marigold light, ivory paper, antique gold leaf.
+*/
+@theme {
+  --color-ink: #150e0a;
+  --color-umber: #2a1a12;
+  --color-ivory: #f3ead8;
+  --color-chalk: #f8f1e3;
+  --color-parchment: #ece0c6;
+  --color-sindoor: #a8241b;
+  --color-sindoor-deep: #5c100c;
+  --color-rani: #c2366f;
+  --color-marigold: #e49b34;
+  --color-haldi: #f1c35b;
+  --color-peacock: #0b4a55;
+  --color-peacock-deep: #062429;
+  --color-emerald: #134a37;
+  --color-gold: #c9a35e;
+  --color-gold-pale: #ead5a6;
+
+  /* Latin faces first; Devanagari falls through to its matched partner by unicode-range. */
+  --font-display: "Cormorant Garamond Variable", "Rozha One", "Cormorant Garamond", Georgia, serif;
+  --font-names: "Pinyon Script", "Cormorant Garamond Variable", cursive;
+  --font-sans: "Jost Variable", "Martel", "Avenir Next", system-ui, sans-serif;
+  /* Devanagari system: Rozha One (Didone headlines) · Martel (text) · Amita (sacred lines, calligraphic) */
+  --font-deva: "Martel", "Jost Variable", "Noto Serif Devanagari", serif;
+  --font-deva-display: "Rozha One", "Cormorant Garamond Variable", serif;
+  --font-script: "Amita", "Cormorant Garamond Variable", serif;
+
+  --ease-royal: cubic-bezier(0.22, 1, 0.36, 1);
+  --ease-silk: cubic-bezier(0.65, 0, 0.35, 1);
+}
+
+@layer base {
+  html {
+    background: var(--color-ink);
+    color: var(--color-ivory);
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    text-rendering: optimizeLegibility;
+  }
+  body {
+    font-family: var(--font-sans);
+    overflow-x: clip;
+  }
+  ::selection {
+    background: var(--color-sindoor);
+    color: var(--color-ivory);
+  }
+  :focus-visible {
+    outline: 1.5px solid var(--color-gold);
+    outline-offset: 5px;
+    border-radius: 2px;
+  }
+  h1, h2, h3, h4 {
+    font-weight: 400;
+  }
+  input, textarea {
+    font: inherit;
+  }
+}
+
+html.lenis, html.lenis body { height: auto; }
+.lenis.lenis-smooth { scroll-behavior: auto !important; }
+.lenis.lenis-stopped { overflow: clip; }
+
+@utility eyebrow {
+  font-family: var(--font-sans);
+  font-size: 0.6875rem;
+  line-height: 1.6;
+  letter-spacing: 0.32em;
+  text-transform: uppercase;
+  font-weight: 450;
+}
+
+@utility display {
+  font-family: var(--font-display);
+  font-weight: 400;
+  letter-spacing: -0.012em;
+  line-height: 0.92;
+  font-variant-numeric: lining-nums;
+}
+
+.font-display {
+  font-variant-numeric: lining-nums;
+}
+
+/* Devanagari: no tracking (it breaks the shirorekha), no caps, no faux italics. */
+@layer utilities {
+  .eyebrow:is(:lang(hi), :lang(sa)),
+  .eyebrow :is(:lang(hi), :lang(sa)) {
+    font-family: var(--font-deva);
+    font-size: 0.9rem;
+    font-weight: 600;
+    letter-spacing: 0;
+    line-height: 1.7;
+    text-transform: none;
+    font-style: normal;
+  }
+  .display:is(:lang(hi), :lang(sa)),
+  .display :is(:lang(hi), :lang(sa)) {
+    font-family: var(--font-deva-display);
+    font-weight: 400;
+    letter-spacing: 0;
+    line-height: 1.1;
+    font-style: normal;
+  }
+}
+
+/* Sacred lines and blessings — set like the hand-lettered headers of a kankotri. */
+@utility shloka {
+  font-family: var(--font-script);
+  font-weight: 400;
+  font-style: normal;
+  letter-spacing: 0;
+  text-transform: none;
+  line-height: 1.45;
+}
+
+@utility gold-foil {
+  background-image: linear-gradient(112deg, #7d5a22 0%, #e6cb8c 20%, #b48a43 36%, #f6e6bb 50%, #a77a35 66%, #e3c37f 84%, #8a6428 100%);
+  background-size: 220% 100%;
+  background-position: 0% 50%;
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+  transition: background-position 1.6s var(--ease-royal);
+}
+
+@utility paper {
+  background-color: var(--color-chalk);
+  background-image:
+    radial-gradient(ellipse at 8% 0%, rgb(194 54 111 / 0.07), transparent 45%),
+    radial-gradient(ellipse at 100% 100%, rgb(11 74 85 / 0.08), transparent 50%),
+    radial-gradient(ellipse at 60% 40%, rgb(228 155 52 / 0.06), transparent 55%);
+}
+
+/* Ambient loops — each one carries a physical idea: breeze, flame, firework, light. */
+.anim-sway { animation: sway 5.5s ease-in-out infinite alternate; transform-box: fill-box; transform-origin: 50% 0%; }
+@keyframes sway { from { transform: rotate(-2.4deg); } to { transform: rotate(2.4deg); } }
+
+.anim-twinkle { animation: twinkle 3.4s ease-in-out infinite; transform-box: fill-box; transform-origin: center; }
+@keyframes twinkle { 0%, 100% { opacity: 0.15; transform: scale(0.55); } 50% { opacity: 1; transform: scale(1); } }
+
+.anim-flicker { animation: flicker 2.2s ease-in-out infinite; transform-box: fill-box; transform-origin: 50% 100%; }
+@keyframes flicker {
+  0%, 100% { transform: scale(1, 1) rotate(0deg); }
+  20% { transform: scale(0.93, 1.07) rotate(-2.5deg); }
+  45% { transform: scale(1.05, 0.94) rotate(1.5deg); }
+  70% { transform: scale(0.97, 1.05) rotate(-1deg); }
+}
+
+.anim-burst { animation: burst 4.2s cubic-bezier(0.15, 0.7, 0.3, 1) infinite; transform-box: fill-box; transform-origin: center; }
+@keyframes burst {
+  0% { transform: scale(0.05); opacity: 0; }
+  8% { opacity: 1; }
+  55% { transform: scale(1); opacity: 0.95; }
+  100% { transform: scale(1.12) translateY(6px); opacity: 0; }
+}
+
+.anim-spin { animation: spin 120s linear infinite; transform-box: fill-box; transform-origin: center; }
+.anim-spin-rev { animation: spin 160s linear infinite reverse; transform-box: fill-box; transform-origin: center; }
+@keyframes spin { to { transform: rotate(360deg); } }
+
+.anim-ripple { animation: ripple 2.8s ease-out infinite; transform-box: fill-box; transform-origin: center; }
+@keyframes ripple { from { transform: scale(0.3); opacity: 0.85; } to { transform: scale(2.6); opacity: 0; } }
+
+.anim-breathe { animation: breathe 7s ease-in-out infinite alternate; }
+@keyframes breathe { from { opacity: 0.5; transform: scale(1); } to { opacity: 0.95; transform: scale(1.1); } }
+
+.anim-cue { animation: cue 2.6s var(--ease-silk) infinite; }
+@keyframes cue { 0% { transform: translateY(-100%); } 100% { transform: translateY(100%); } }
+
+.anim-float { animation: float 9s ease-in-out infinite alternate; transform-box: fill-box; transform-origin: center; }
+@keyframes float { from { transform: translateY(-6px) rotate(-3deg); } to { transform: translateY(8px) rotate(4deg); } }
+
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation: none !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}
