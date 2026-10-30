@@ -34,7 +34,7 @@ function Unit({value, label}: {value: number; label: string}) {
           </span>
         ))}
       </span>
-      <span lang="hi" className="eyebrow text-gold-pale/60">{label}</span>
+      <span className="eyebrow text-gold-pale/60">{label}</span>
     </div>
   );
 }
@@ -47,20 +47,20 @@ function Countdown() {
   }, []);
 
   if (!left) {
-    return <p lang="hi" className="display text-[clamp(2.4rem,6vw,5rem)] text-haldi">उत्सव आरम्भ हो चुका है।</p>;
+    return <p className="display text-[clamp(2.4rem,6vw,5rem)] italic text-haldi">The celebrations have begun!</p>;
   }
   const label = `${left.days} days, ${left.hours} hours and ${left.minutes} minutes until the wedding`;
   return (
     <div role="timer" aria-label={label} className="flex items-start justify-center gap-[clamp(0.8rem,3vw,3rem)]">
       <div aria-hidden="true" className="contents">
-        <Unit value={left.days} label="दिन" />
+        <Unit value={left.days} label="Days" />
         <span className="display mt-[0.15em] text-[clamp(2rem,5vw,4.5rem)] text-gold/50">:</span>
-        <Unit value={left.hours} label="घंटे" />
+        <Unit value={left.hours} label="Hours" />
         <span className="display mt-[0.15em] text-[clamp(2rem,5vw,4.5rem)] text-gold/50">:</span>
-        <Unit value={left.minutes} label="मिनट" />
+        <Unit value={left.minutes} label="Minutes" />
         <span className="display mt-[0.15em] hidden text-[clamp(2rem,5vw,4.5rem)] text-gold/50 sm:block">:</span>
         <div className="hidden sm:block">
-          <Unit value={left.seconds} label="सेकंड" />
+          <Unit value={left.seconds} label="Seconds" />
         </div>
       </div>
     </div>
@@ -73,7 +73,7 @@ export function Finale() {
     <footer className="relative isolate overflow-hidden bg-sindoor-deep pb-28 pt-[clamp(6rem,16vh,10rem)] text-ivory lg:pb-14">
       <div aria-hidden="true" className="absolute inset-0 -z-10 bg-[radial-gradient(70%_55%_at_50%_42%,rgb(228_155_52/0.28),transparent_70%)]" />
       <div className="mx-auto flex max-w-[1680px] flex-col items-center px-[clamp(1.1rem,3vw,2.75rem)] text-center">
-        <Reveal as="p" className="eyebrow text-gold"><span lang="hi">सेहरा बँधने में शेष</span></Reveal>
+        <Reveal as="p" className="eyebrow text-gold">Until the sehra is tied</Reveal>
         <Reveal delay={0.1} className="mt-10 w-full">
           <Countdown />
         </Reveal>
@@ -90,10 +90,10 @@ export function Finale() {
         </div>
 
         <Reveal className="mt-14 flex flex-col items-center gap-3">
-          <p lang="hi" className="display text-[clamp(1.6rem,2.6vw,2.3rem)]">
-            अंकुर संग एकता · २१ · ११ · २०२६
+          <p className="display text-[clamp(1.8rem,3vw,2.6rem)] italic">
+            Ankur weds Ekta <span className="not-italic text-gold">·</span> 21.11.2026
           </p>
-          <p lang="hi" className="eyebrow text-gold-pale/60">दर्शनाभिलाषी — {families.compliments}</p>
+          <p className="font-display text-[1.2rem] text-gold-pale/75">With love — {families.complimentsEn}</p>
         </Reveal>
 
         <svg viewBox="0 0 520 70" className="mt-12 h-[70px] w-[min(90vw,520px)] overflow-visible" aria-hidden="true">
@@ -112,7 +112,7 @@ export function Finale() {
             }}
             className="group eyebrow flex items-center gap-3 text-ivory/70 transition-colors hover:text-haldi"
           >
-            <span lang="hi">द्वार पर लौटें</span>
+            <span>Back to the gate</span>
             <span aria-hidden="true" className="inline-block transition-transform duration-500 group-hover:-translate-y-1">↑</span>
           </a>
         </div>

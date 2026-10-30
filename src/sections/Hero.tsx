@@ -74,7 +74,7 @@ export function Hero() {
         <motion.p {...fadeIn(0.5)} className="flex flex-wrap items-center gap-x-5 gap-y-1 text-gold-pale">
           <span lang="hi" className="shloka whitespace-nowrap text-[clamp(1.7rem,2.4vw,2.3rem)] leading-none text-haldi">शुभ विवाह</span>
           <span className="h-px w-12 bg-gold/60" aria-hidden="true" />
-          <span lang="hi" className="font-deva text-[clamp(1.02rem,1.25vw,1.2rem)] text-gold-pale/90">मंगल परिणय उत्सव</span>
+          <span className="font-display text-[clamp(1.15rem,1.4vw,1.35rem)] italic text-gold-pale/90">The Wedding Celebration</span>
         </motion.p>
 
         <motion.h1
@@ -109,14 +109,14 @@ export function Hero() {
         <motion.div style={{opacity: fade}} className="relative flex flex-col items-center gap-4 text-center">
           <motion.div {...fadeIn(1.5)} className="flex flex-col items-center gap-3 sm:flex-row sm:items-stretch sm:gap-[clamp(1.5rem,4vw,3.5rem)]">
             <dl className="flex flex-col items-center gap-1 sm:items-end sm:text-right">
-              <dt lang="hi" className="font-deva text-[clamp(0.95rem,1.1vw,1.08rem)] text-gold-pale/85">दो दिवसीय उत्सव</dt>
+              <dt className="eyebrow text-gold-pale/80">Two days of celebration</dt>
               <dd className="font-display text-[clamp(2rem,3.4vw,3.3rem)] font-medium leading-[1.05] text-ivory">
                 20 <span className="font-light text-gold">–</span> 21 November <span className="text-gold-pale/80">2026</span>
               </dd>
             </dl>
             <span aria-hidden="true" className="hidden w-px bg-gradient-to-b from-transparent via-gold to-transparent sm:block" />
             <address className="flex flex-col items-center gap-1 not-italic sm:items-start sm:text-left">
-              <span lang="hi" className="font-deva text-[clamp(0.95rem,1.1vw,1.08rem)] text-gold-pale/85">विवाह स्थल</span>
+              <span className="eyebrow text-gold-pale/80">The Venue</span>
               <span className="font-display text-[clamp(2rem,3.4vw,3.3rem)] font-medium leading-[1.05] text-ivory">
                 {venue.name} <span className="text-gold-pale/80">· {venue.lines[1].split(',')[0]}</span>
               </span>
@@ -131,7 +131,7 @@ export function Hero() {
             }}
             className="group mt-1 flex flex-col items-center gap-2"
           >
-            <span lang="hi" className="font-deva text-[0.98rem] text-gold-pale/80 transition-colors group-hover:text-ivory">विक्रम संवत् २०८३ · प्रवेश करें</span>
+            <span className="eyebrow text-gold-pale/75 transition-colors group-hover:text-ivory">Step inside</span>
             <span aria-hidden="true" className="relative h-10 w-px overflow-hidden bg-ivory/20">
               <span className="anim-cue absolute inset-0 bg-haldi" />
             </span>

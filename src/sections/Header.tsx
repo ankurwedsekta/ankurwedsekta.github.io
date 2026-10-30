@@ -6,9 +6,9 @@ import {useSmooth} from '../lib/smooth';
 import {mapsLink} from '../content/wedding';
 
 export const navItems = [
-  {href: '#invitation', numeral: 'I', label: 'निमंत्रण'},
-  {href: '#ceremonies', numeral: 'II', label: 'कार्यक्रम'},
-  {href: '#venue', numeral: 'III', label: 'स्थल'},
+  {href: '#invitation', numeral: 'I', label: 'Invitation'},
+  {href: '#ceremonies', numeral: 'II', label: 'Celebrations'},
+  {href: '#venue', numeral: 'III', label: 'Venue'},
 ] as const;
 
 export function Header() {
@@ -45,6 +45,10 @@ export function Header() {
       aria-hidden={!opened}
     >
       <motion.div aria-hidden="true" className="absolute inset-x-0 top-0 h-px origin-left bg-current" style={{scaleX: progress}} />
+      <div
+        aria-hidden="true"
+        className={`absolute inset-x-0 top-0 -z-10 h-28 transition-colors duration-700 lg:h-24 ${light ? 'bg-gradient-to-b from-chalk via-chalk/85 to-transparent' : 'bg-gradient-to-b from-ink/85 via-ink/50 to-transparent'}`}
+      />
       <div className="flex items-center justify-between px-[clamp(1.1rem,3vw,2.75rem)] py-5">
         <a
           href="#top"
@@ -61,7 +65,7 @@ export function Header() {
               <li key={n.href}>
                 <a href={n.href} onClick={(e) => go(e, n.href)} tabIndex={opened ? 0 : -1} className="group eyebrow flex items-baseline gap-2">
                   <span className="display text-[0.95rem] normal-case italic tracking-normal opacity-60">{n.numeral}</span>
-                  <span lang="hi" className="relative">
+                  <span className="relative">
                     {n.label}
                     <span className="absolute -bottom-1 left-0 h-px w-full origin-right scale-x-0 bg-current transition-transform duration-700 ease-[var(--ease-royal)] group-hover:origin-left group-hover:scale-x-100" />
                   </span>

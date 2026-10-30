@@ -206,10 +206,12 @@ export function Gateway() {
       </div>
 
       <div id="gate-desc" data-gate-intro className="pointer-events-none absolute inset-x-0 bottom-[clamp(28px,6vh,64px)] z-10 flex flex-col items-center gap-1 px-6 text-center [text-shadow:0_2px_12px_rgb(30_4_2/0.7)]">
-        <p lang="hi" className="font-deva-display text-[clamp(1.5rem,2.4vw,2.2rem)] text-gold-pale">
-          अंकुर <span className="text-haldi">✦</span> एकता
+        <p className="font-names text-[clamp(2.4rem,3.6vw,3.2rem)] leading-tight text-gold-pale">
+          Ankur <span className="font-display text-[0.6em] font-light italic text-haldi">&amp;</span> Ekta
         </p>
-        <p lang="hi" className="font-deva text-[clamp(1rem,1.3vw,1.2rem)] text-ivory/85">२०–२१ नवम्बर २०२६ · मुहर स्पर्श कर प्रवेश करें</p>
+        <p className="font-display text-[clamp(1.1rem,1.4vw,1.3rem)] text-ivory/90">
+          20 – 21 November 2026 <span className="text-haldi">·</span> <span className="italic">Tap the seal to enter</span>
+        </p>
       </div>
     </div>
   );

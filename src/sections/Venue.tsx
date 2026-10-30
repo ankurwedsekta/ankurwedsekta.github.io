@@ -41,7 +41,7 @@ export function Venue() {
           <Reveal as="p" className="eyebrow flex items-center gap-4 text-gold">
             <span className="display text-[1.1rem] normal-case italic tracking-normal">III</span>
             <span className="h-px w-12 bg-current" aria-hidden="true" />
-            <span lang="hi">विवाह स्थल</span>
+            <span>The Venue</span>
           </Reveal>
           <h2 id="venue-title" className="display mt-10 text-[clamp(4.6rem,11vw,10rem)]">
             <SplitText text={venue.name} stagger={0.06} />
@@ -51,14 +51,14 @@ export function Venue() {
           </h2>
           <Divider className="mt-10 w-48 text-gold" />
           <Reveal as="div" delay={0.2} className="mt-8">
-            <address className="text-[1.15rem] not-italic leading-[1.8] text-ivory/80">
+            <address className="font-display text-[1.35rem] not-italic leading-[1.6] text-ivory/85">
               {venue.name} ({venue.subtitle})
               {venue.lines.map((l) => (
                 <span key={l} className="block">{l}</span>
               ))}
             </address>
-            <p lang="hi" className="mt-6 max-w-[38ch] text-[1.08rem] leading-[1.9] text-ivory/60">
-              दोनों संध्याओं के सभी मंगल कार्यक्रम यहीं सम्पन्न होंगे। थोड़ा पहले पधारें — साँझ ढलते ही आँगन के दीप जल उठते हैं।
+            <p className="mt-6 max-w-[36ch] font-display text-[1.25rem] italic leading-[1.6] text-ivory/65">
+              Both evenings unfold here. Do arrive a little early — the courtyard diyas are lit at dusk.
             </p>
           </Reveal>
           <Reveal delay={0.3} className="mt-10 flex flex-wrap gap-3">
@@ -74,7 +74,7 @@ export function Venue() {
 
         <motion.div style={{y: mapY}} className="col-span-12 lg:col-span-7 lg:pt-10">
           <div className="mb-5 flex items-center justify-between gap-4">
-            <p className="eyebrow text-ivory/55">{mode === 'painted' ? <span lang="hi">दरबारी चित्रकार की नज़र से</span> : 'Live map · Google'}</p>
+            <p className="eyebrow text-ivory/55">{mode === 'painted' ? 'As painted by the court artist' : 'Live map · Google'}</p>
             <div role="group" aria-label="Map style" className="relative flex rounded-full border border-gold/40 p-1">
               {(['painted', 'live'] as const).map((m) => (
                 <button

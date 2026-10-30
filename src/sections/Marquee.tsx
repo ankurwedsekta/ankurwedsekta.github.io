@@ -48,8 +48,8 @@ export function Marquee() {
             <div data-row="a" className="flex w-max">
               <Row />
             </div>
-            <div className="h-px bg-gold/25" />
-            <div data-row="b" className="flex w-max">
+            <div className="hidden h-px bg-gold/25 md:block" />
+            <div data-row="b" className="hidden w-max md:flex">
               <Row italic />
             </div>
           </div>

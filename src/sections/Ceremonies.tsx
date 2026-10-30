@@ -2,7 +2,7 @@ import {useLayoutEffect, useRef, type CSSProperties} from 'react';
 import {ArchWindow} from '../components/ornaments';
 import {scenes} from '../components/scenes';
 import {Reveal, SplitText} from '../components/Reveal';
-import {ArrowIcon, RoyalButton} from '../components/RoyalButton';
+import {RoyalButton} from '../components/RoyalButton';
 import {gsap} from '../lib/smooth';
 import {downloadIcs, googleCalendarUrl} from '../lib/calendar';
 import {ceremonies, type Ceremony} from '../content/wedding';
@@ -44,7 +44,7 @@ function Panel({c, index}: {c: Ceremony; index: number}) {
         aria-hidden="true"
         data-drift="-0.5"
         lang="hi"
-        className={`pointer-events-none absolute top-1/2 -z-10 -translate-y-1/2 whitespace-nowrap font-deva-display text-[clamp(14rem,38vw,40rem)] leading-none text-transparent opacity-[0.1] [-webkit-text-stroke:1.5px_currentColor] ${flip ? 'left-[-6vw]' : 'right-[-8vw]'}`}
+        className={`pointer-events-none absolute top-1/2 -z-10 hidden -translate-y-1/2 whitespace-nowrap font-deva-display text-[clamp(14rem,38vw,40rem)] leading-none text-transparent opacity-[0.1] [-webkit-text-stroke:1.5px_currentColor] lg:block ${flip ? 'left-[-6vw]' : 'right-[-8vw]'}`}
         style={{WebkitTextStrokeColor: 'var(--ink)'}}
       >
         {c.devanagari}
@@ -70,49 +70,55 @@ function Panel({c, index}: {c: Ceremony; index: number}) {
               {String(index + 1).padStart(2, '0')}
             </span>
             <span className="h-px w-10 bg-current" aria-hidden="true" />
-            <span lang="hi">{c.day === 'day-one' ? 'पहला दिन' : 'दूसरा दिन'} · {c.weekdayHi}</span>
+            <span>{c.day === 'day-one' ? 'Day One' : 'Day Two'} · {c.weekday}</span>
           </div>
 
           <h3 id={`${c.id}-title`} className="display mt-6 text-[clamp(3.6rem,8.6vw,8.6rem)] leading-[0.86]">
             <SplitText text={c.name} by={c.name.includes(' ') ? 'word' : 'char'} stagger={0.05} />
           </h3>
           <p className="mt-5 flex flex-wrap items-baseline gap-x-4 gap-y-1">
-            <span lang="hi" className="display text-[clamp(1.5rem,2.3vw,2.1rem)]" style={{color: 'var(--accent)'}}>{c.devanagari}</span>
+            <span lang="hi" className="shloka text-[clamp(1.5rem,2.3vw,2.1rem)] leading-none" style={{color: 'var(--accent)'}}>{c.devanagari}</span>
             <span aria-hidden="true" className="h-px w-8 self-center bg-current opacity-40" />
-            <span lang="hi" className="font-deva text-[clamp(1.1rem,1.5vw,1.35rem)]" style={{color: 'var(--muted)'}}>{c.subtitleHi}</span>
+            <span className="font-display text-[clamp(1.25rem,1.7vw,1.55rem)] italic" style={{color: 'var(--muted)'}}>{c.subtitle}</span>
           </p>
 
-          <div data-drift="0.35" className="mt-10 flex items-end gap-6 border-t pt-6" style={{borderColor: 'color-mix(in srgb, var(--ink) 22%, transparent)'}}>
-            <p className="display text-[clamp(4.6rem,9vw,9rem)] leading-[0.78] lining-nums tabular-nums" aria-label={`${c.time} ${c.meridiem}`}>
+          <div data-drift="0.35" className="mt-8 flex items-end gap-6 border-t pt-6" style={{borderColor: 'color-mix(in srgb, var(--ink) 22%, transparent)'}}>
+            <p className="display text-[clamp(4.2rem,9vw,9rem)] leading-[0.78] lining-nums tabular-nums" aria-label={`${c.time} ${c.meridiem}`}>
               {c.time}
               <span className="ml-2 align-top text-[0.28em] italic" style={{color: 'var(--accent)'}}>{c.meridiem}</span>
             </p>
             <p className="eyebrow mb-2 leading-[1.9]" style={{color: 'var(--muted)'}}>
-              <span lang="hi">{c.weekdayHi}</span>
+              {c.weekday}
               <br />
               <span style={{color: 'var(--ink)'}}>{c.date}</span>
             </p>
           </div>
 
-          <Reveal as="p" className="mt-8 max-w-[40ch] text-[clamp(1.08rem,1.3vw,1.22rem)] leading-[1.9]" style={{color: 'var(--muted)'}}>
-            <span lang="hi">{c.lineHi}</span>
+          <Reveal as="p" className="mt-7 max-w-[38ch] font-display text-[clamp(1.25rem,1.5vw,1.4rem)] leading-[1.6]" style={{color: 'var(--muted)'}}>
+            {c.line}
           </Reveal>
 
-          <div className="mt-10 flex flex-wrap gap-3" style={{color: 'var(--ink)'}}>
+          <div className="mt-8 flex flex-wrap items-center gap-x-6 gap-y-3" style={{color: 'var(--ink)'}}>
             <RoyalButton
               href={googleCalendarUrl(c)}
               target="_blank"
               rel="noreferrer"
               variant="ghost"
               tone={light ? 'sindoor' : 'gold'}
-              icon={<ArrowIcon />}
+              icon={<CalendarIcon />}
               aria-label={`Add ${c.name} to Google Calendar (opens in a new tab)`}
             >
-              Google Calendar
+              Add to calendar
             </RoyalButton>
-            <RoyalButton variant="ghost" tone={light ? 'sindoor' : 'ivory'} icon={<CalendarIcon />} onClick={() => downloadIcs([c], `${c.id}-ankur-ekta.ics`)} aria-label={`Download ${c.name} calendar file`}>
-              Save .ics
-            </RoyalButton>
+            <button
+              type="button"
+              onClick={() => downloadIcs([c], `${c.id}-ankur-ekta.ics`)}
+              className="font-display text-[1.05rem] italic underline decoration-current/40 underline-offset-4 transition-opacity hover:opacity-70"
+              style={{color: 'var(--muted)'}}
+              aria-label={`Download ${c.name} calendar file for Apple or Outlook`}
+            >
+              Apple / Outlook
+            </button>
           </div>
         </div>
       </div>
@@ -184,22 +190,23 @@ export function Ceremonies() {
               <Reveal as="p" className="eyebrow flex items-center gap-4 text-gold">
                 <span className="display text-[1.1rem] normal-case italic tracking-normal">II</span>
                 <span className="h-px w-12 bg-current" aria-hidden="true" />
-                <span lang="hi">मंगल कार्यक्रम</span>
+                <span>The Celebrations</span>
               </Reveal>
-              <h2 id="ceremonies-title" lang="hi" className="display mt-8 text-[clamp(2.9rem,6.6vw,6.8rem)] text-ivory">
-                <SplitText text="चार रस्में," stagger={0.08} />
+              <h2 id="ceremonies-title" className="display mt-8 text-[clamp(3.2rem,7vw,7.2rem)] leading-[0.95] text-ivory">
+                <SplitText text="Four rituals," by="word" stagger={0.08} />
                 <br />
-                <span className="text-haldi">
-                  <SplitText text="दो शुभ संध्याएँ।" stagger={0.08} delay={0.2} />
+                <span className="italic text-haldi">
+                  <SplitText text="two golden evenings." by="word" stagger={0.08} delay={0.2} />
                 </span>
               </h2>
-              <div className="mt-14 grid max-w-[720px] gap-8 sm:grid-cols-2">
+              <p lang="hi" className="shloka mt-6 text-[clamp(1.4rem,2vw,1.8rem)] text-gold-pale/80">मंगल कार्यक्रम</p>
+              <div className="mt-12 grid max-w-[720px] gap-8 sm:grid-cols-2">
                 <Reveal delay={0.1} className="border-t border-gold/30 pt-5">
-                  <p className="eyebrow text-gold"><span lang="hi">शुक्रवार</span> · 20 November</p>
+                  <p className="eyebrow text-gold">Friday · 20 November</p>
                   <p className="display mt-3 text-[1.8rem] italic text-ivory">Sagaai</p>
                 </Reveal>
                 <Reveal delay={0.2} className="border-t border-gold/30 pt-5">
-                  <p className="eyebrow text-gold"><span lang="hi">शनिवार</span> · 21 November</p>
+                  <p className="eyebrow text-gold">Saturday · 21 November</p>
                   <p className="display mt-3 text-[1.8rem] italic text-ivory">Sehra Bandi · Baraat · Dawat</p>
                 </Reveal>
               </div>
@@ -207,7 +214,7 @@ export function Ceremonies() {
                 <RoyalButton variant="solid" tone="gold" icon={<CalendarIcon />} onClick={() => downloadIcs(ceremonies)}>
                   Save every date
                 </RoyalButton>
-                <p lang="hi" className="eyebrow hidden text-ivory/50 lg:motion-safe:block">महल की सैर कीजिए →</p>
+                <p className="eyebrow hidden text-ivory/50 lg:motion-safe:block">Scroll through the palace →</p>
               </Reveal>
             </div>
           </div>

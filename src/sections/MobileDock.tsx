@@ -5,9 +5,9 @@ import {useSmooth} from '../lib/smooth';
 import {mapsLink} from '../content/wedding';
 
 const links = [
-  {href: '#ceremonies', label: 'कार्यक्रम'},
-  {href: '#venue', label: 'स्थल'},
-  {href: mapsLink, label: 'मानचित्र ↗', strong: true, external: true},
+  {href: '#ceremonies', label: 'Events'},
+  {href: '#venue', label: 'Venue'},
+  {href: mapsLink, label: 'Map ↗', strong: true, external: true},
 ];
 
 export function MobileDock() {
@@ -41,7 +41,6 @@ export function MobileDock() {
                           smooth.scrollTo(l.href);
                         },
                       })}
-                  lang="hi"
                   className={`eyebrow block rounded-full px-3 py-3 text-center ${l.strong ? 'bg-gold text-ink' : 'text-ivory/85'}`}
                 >
                   {l.label}
